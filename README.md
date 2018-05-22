@@ -1,4 +1,4 @@
-# Python 3 bruteforce script built on top of Arthur's fundraiser tools  
+# Tezos password bruteforcer using fundraiser tools  
   
 ## How to use:  
 ##### Mac OS / Linux
@@ -82,8 +82,7 @@ email: [jon@e.rroneo.us](mailto:jon@e.rroneo.us)
 telegram: [@erroneous](https://t.me/erroneous)  
   
 feel free to contact me with any questions!  
-##
-##
+  
   
 feeling generous?  
   
