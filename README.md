@@ -1,15 +1,16 @@
-# Tezos password bruteforcer using fundraiser tools  
+# Tz-Brute
+Tezos password bruteforcer built on top of Arthur Breitman's fundraiser tools for validation.  
   
 ## How to use:  
 ##### Mac OS / Linux
-Firstly you'll need to install Python 3 if you don't have it already.
-pyenv is a great way to manage multiple python installations on Mac, if you want to use pyenv open up a Applications/Utilities/Terminal and run:  
+Firstly you'll need to install Python 3 if you don't have it already.  
+pyenv is a great way to manage multiple python installations, if you want to use pyenv open up a Terminal and run:  
 ```bash
 curl -L https://github.com/pyenv/pyenv-installer/raw/master/bin/pyenv-installer | bash
 pyenv install 3.6.5
 pyenv global 3.6.5
 ```  
-If you don't want to use pyenv you can download Python 3 here:
+If you don't want to use pyenv you can download Python 3 here:  
 https://www.python.org/downloads/  
   
 Next step is installing pip:
@@ -17,8 +18,8 @@ Next step is installing pip:
 sudo easy_install pip
 ```  
   
-Now we have pip we need to download and unzip this file:
-https://github.com/NODESPLIT/tz-brute/archive/tz-brute-master.zip
+Now we have pip we need to download and unzip this file:  
+https://github.com/NODESPLIT/tz-brute/archive/tz-brute-master.zip  
 You can then type "cd " into terminal (without brackets and with the space at the end) then drag and drop the newly unzipped folder into the terminal window and run the resulting command.  
   
 We now need to install dependencies:
@@ -59,7 +60,7 @@ This is the email address you used when you contributed. This is CASE SENSITIVE.
 This is the mnemonic you received upon contribution, it will be within the PDF you downloaded. It's a long string of words all in lowercase separated by spaces.
 
 ## Reset:
-Without resetting the script will start from where it last left off.
+Without resetting the script will start from where it last left off.  
 You can reset your anchor.json by running:
 ```bash
 python main.py reset
