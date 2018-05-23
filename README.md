@@ -39,7 +39,7 @@ python main.py
 ## Parameters:
 ##### Charset (1 - 6):
 This is basically the characters that could be in your password, the lower the number and the less in the charset the better as it'll mean less permutations to test.
-```bash
+```
 1| "0123456789"
 2| "0123456789abcdefghijklmnopqrstuvwxyz"
 3| "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
