@@ -34,12 +34,14 @@ def check(address, mnemonic, email, password):
     try:
         seed = bitcoin.mnemonic_to_seed(mnemonic.encode(), salt)
     except:
-        print("Invalid mnemonic")
-        exit(1)
+        return -1
 
     pk, sk = pysodium.crypto_sign_seed_keypair(seed[0:32])
     pkh = blake2b(pk,20).digest()
 
     decrypted_address = tezos_pkh(pkh)
 
-    return address == decrypted_address
+    if address == decrypted_address:
+        return 1
+    else:
+        return 0

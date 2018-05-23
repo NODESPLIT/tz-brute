@@ -13,6 +13,7 @@ charsets = [
 	"0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz!#$%&'()*+,-./:;<=>?@[\]^_`{|}~"
 ]
 
+
 if len(sys.argv) > 1 and sys.argv[1] == "reset":
 	anchor.reset()
 	sys.exit()
@@ -20,7 +21,7 @@ if len(sys.argv) > 1 and sys.argv[1] == "reset":
 if anchor.exists():
 	anchor.load()
 	if anchor.data["success"]:
-		print('Password is {}. Found in {} guesses.'.format(anchor.data["details"]["password"], anchor.data["depth"]))
+		print("Password is {}. Found in {} guesses.".format(anchor.data["details"]["password"], anchor.data["depth"]))
 		sys.exit()
 else:
 	i = 1
@@ -56,6 +57,7 @@ else:
 
 	anchor.save()
 
+
 def cache(depth):
 	anchor.data["depth"] = depth
 	anchor.save()
@@ -63,11 +65,14 @@ def cache(depth):
 def check(password):
 	return tezos.check(anchor.data["details"]["address"], anchor.data["details"]["mnemonic"], anchor.data["details"]["email"], password)
 
+
 charset = charsets[anchor.data["parameters"]["charset"]]
 print("Starting bruteforce with charset[{}]...".format(charset))
+
 password = brute.force(int(anchor.data["depth"]), charset, anchor.data["parameters"]["minimum"], 100, check, cache)
 if password:
-	print('Password is {}. Found in {} guesses.'.format(password[0], password[1]))
+	print("Password is {}. Found in {} guesses.".format(password[0], password[1]))
 	anchor.data["details"]["password"] = password[0]
 	anchor.data["success"] = True
+	anchor.data["depth"] = int(password[1])
 	anchor.save()

@@ -9,11 +9,14 @@ def force(start_depth, charset, minimum, maximum, check_callback, cache_callback
 			attempts += 1
 			if attempts < last_depth:
 				continue
+
 			guess = ''.join(guess)
-			if check_callback(guess):
+			if check_callback(guess) == 1:
 				return (guess, attempts)
+
 			print("- {} - permutations: {}".format(guess, attempts), end="\r")
 			if (math.floor(attempts / 1000) * 1000) > last_depth:
 				last_depth = attempts
 				cache_callback(last_depth)
+
 	return False
