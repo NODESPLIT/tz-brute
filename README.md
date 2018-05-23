@@ -87,6 +87,7 @@ feel free to contact me with any questions!
   
 feeling generous?  
   
+tez: tz1MDNRzDjHEXrMM17MeajYBBJwGVWBrgWhb
 eth: 0xbebb3c979daa3fbe89af4fb624c454ab842b18b3  
 btc: 3NSczAYLbyhKpKACW2epwgxUZVfthbUHzR  
 ltc: MDt9foDqjRhuCrWQhucYdJgCjXgASdShw9  
