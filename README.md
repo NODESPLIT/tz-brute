@@ -19,7 +19,7 @@ sudo easy_install pip
 ```  
   
 Now we have pip we need to download and unzip this file:  
-https://github.com/NODESPLIT/tz-brute/archive/tz-brute-master.zip  
+https://github.com/NODESPLIT/tz-brute/archive/master.zip  
 You can then type "cd " into terminal (without brackets and with the space at the end) then drag and drop the newly unzipped folder into the terminal window and run the resulting command.  
   
 We now need to install dependencies:
