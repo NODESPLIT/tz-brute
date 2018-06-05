@@ -20,6 +20,7 @@ if len(sys.argv) > 1 and sys.argv[1] == "reset":
 
 if anchor.exists():
 	anchor.load()
+	charsets.append(anchor.data["parameters"]["custom"])
 	if anchor.data["success"]:
 		print("Password is {}. Found in {} guesses.".format(anchor.data["details"]["password"], anchor.data["depth"]))
 		sys.exit()
@@ -29,11 +30,19 @@ else:
 	for charset in charsets:
 		print("["+str(i)+"]: "+charset)
 		i += 1
+	print("["+str(i)+"]: CUSTOM CHARSET (ADVANCED)")
 
 	selected_charset = "-1"
-	while not (selected_charset.isdigit() and int(selected_charset) >= 1 and int(selected_charset) <= 6):
-		selected_charset = input("Please select a charset (1 - 6): ")
+	while not (selected_charset.isdigit() and int(selected_charset) >= 1 and int(selected_charset) <= 7):
+		selected_charset = input("Please select a charset (1 - 7): ")
 	anchor.data["parameters"]["charset"] = int(selected_charset) - 1
+	
+	if anchor.data["parameters"]["charset"] == 6:
+		selected_custom_charset = ""
+		while len(selected_custom_charset) == 0:
+			selected_custom_charset = input("Please enter a custom charset (e.g. 0123456789abcde...): ")
+		anchor.data["parameters"]["custom"] = selected_custom_charset
+		charsets.append(anchor.data["parameters"]["custom"])
 	
 	selected_minimum = "-1"
 	while not (selected_minimum.isdigit() and int(selected_minimum) >= 1):

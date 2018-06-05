@@ -6,6 +6,7 @@ import os
 data = {
 	"parameters" : {
 		"charset" : 4,
+		"custom" : "",
 		"minimum" : 3
 	},
 	"details" : {
