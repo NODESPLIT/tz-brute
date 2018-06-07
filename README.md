@@ -2,7 +2,9 @@
 Tezos password bruteforcer built on top of Arthur Breitman's fundraiser tools for validation.  
   
 ## How to use:  
-##### Mac OS / Linux
+##### Mac OS
+###### Just run ```run-osx.sh``` or follow the steps below:
+
 Firstly you'll need to install Python 3 if you don't have it already.  
 pyenv is a great way to manage multiple python installations, if you want to use pyenv open up a Terminal and run:  
 ```bash
@@ -32,6 +34,8 @@ From here we can run Tz-Brute like so:
 python main.py
 ```
   
+##### Linux
+###### coming soon
 ##### Windows
 ###### coming soon
 ###
