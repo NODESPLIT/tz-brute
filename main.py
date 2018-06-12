@@ -45,8 +45,8 @@ else:
 		charsets.append(anchor.data["parameters"]["custom"])
 	
 	selected_minimum = "-1"
-	while not (selected_minimum.isdigit() and int(selected_minimum) >= 1):
-		selected_minimum = input("Please select a minimum length (1 - ?): ")
+	while not (selected_minimum.isdigit() and int(selected_minimum) >= 6):
+		selected_minimum = input("Please select a minimum length (6 - ?): ")
 	anchor.data["parameters"]["minimum"] = int(selected_minimum)
 	
 	selected_address = ""
