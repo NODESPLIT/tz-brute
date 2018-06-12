@@ -10,6 +10,13 @@ else
     /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 fi
 
+if brew ls --versions libsodium > /dev/null; then
+	echo - libsodium is installed
+else
+	echo - installing libsodium...
+	brew install libsodium
+fi
+
 if command -v python3 &>/dev/null; then
 	echo - python3 is installed
 else
