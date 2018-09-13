@@ -12,11 +12,13 @@ data = {
 	"details" : {
 		"address" : "",
 		"email" : "",
-		"mnemonic" : "",
-		"password" : ""
+		"mnemonic" : ""
 	},
-	"success" : False,
-	"depth" : 0
+	"status" : {
+		"success" : False,
+		"length" : 3,
+		"depth" : 0
+	}
 }
 
 def exists():

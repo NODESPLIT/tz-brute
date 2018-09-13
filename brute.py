@@ -1,22 +1,60 @@
 import math
+import time
+import string
 import itertools
+import multiprocessing
 
-def force(start_depth, charset, minimum, maximum, check_callback, cache_callback):
-	attempts = 0
-	last_depth = start_depth
-	for password_length in range(minimum, maximum):
-		for guess in itertools.product(charset, repeat=password_length):
-			attempts += 1
-			if attempts < last_depth:
-				continue
+def permutate(packet, threads, offset, count, check, timestamp):
+	amount = 0
+	for guess in packet:
+		guess = "".join(guess)
+		total = offset + (amount * threads)
+		percent = round((total/count)*100, 6)
+		now = time.time()
+		speed = round((amount / (now - timestamp)) * threads)
+		print("  - {} - permutations: {} / {} ({}%) - threads: {} - speed: {} p/s".format(guess, total, count, percent, threads, speed), end="      \r")
+		if check(guess) == 1:
+			return guess
+		amount += 1
+	return None
 
-			guess = ''.join(guess)
-			if check_callback(guess) == 1:
-				return (guess, attempts)
+def process(result):
+	global found
+	if result:
+		found = result
 
-			print("- {} - permutations: {}".format(guess, attempts), end="\r")
-			if (math.floor(attempts / 1000) * 1000) > last_depth:
-				last_depth = attempts
-				cache_callback(last_depth)
+
+def force(start, charset, minimum, maximum, chunk, check, cache):
+	global found
+	found = None
+
+	threads = multiprocessing.cpu_count()
+	offset = start[1]
+
+	for length in range(minimum, maximum):
+		if length < start[0]:
+			continue
+
+		permutations = itertools.product(charset, repeat=length)
+		count = len(charset) ** length
+		offset = start[1]
+
+		while offset < count:
+			pool = multiprocessing.Pool()
+
+			for thread in range(0, threads):
+				leap = thread * chunk
+				pool.apply_async(permutate, args=(itertools.islice(permutations, offset + leap, offset + leap + chunk), threads, offset, count, check, time.time()), callback=process)
+			
+			pool.close()
+			pool.join()
+
+			if found:
+				return found
+
+			offset += threads * chunk
+			cache(length, offset)
+
+		offset = 0
 
 	return False

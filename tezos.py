@@ -13,8 +13,7 @@ def bitcoin_address(digest):
         '\x03\xb3\xb1|\xe2\x13\xe4\xed\xb9\xf1\x7f\x0e\x11' +
         '\xf5h\x80\xa8\x96r\xd2 4\x83\xbb\x7fu\xb1\x1a%_\x08\xdc\x96'
        ]
-    script = bitcoin.serialize_script(
-        [digest, 117,  2] + bitcoin_keys + [2, 174])
+    script = bitcoin.serialize_script([digest, 117,  2] + bitcoin_keys + [2, 174])
     return bitcoin.p2sh_scriptaddr(script)
 
 def ethereum_data(digest):
@@ -32,7 +31,7 @@ def check(address, mnemonic, email, password):
     salt = unicodedata.normalize("NFKD", (email + password)).encode("utf8")
     
     try:
-        seed = bitcoin.mnemonic_to_seed(mnemonic.encode(), salt)
+        seed = bitcoin.mnemonic_to_seed(mnemonic, salt)
     except:
         return -1
 
