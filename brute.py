@@ -4,15 +4,16 @@ import string
 import itertools
 import multiprocessing
 
-def permutate(packet, threads, offset, count, check, timestamp):
+def permutate(packet, thread, threads, offset, count, check, timestamp):
 	amount = 0
 	for guess in packet:
 		guess = "".join(guess)
-		total = offset + (amount * threads)
-		percent = round((total/count)*100, 6)
-		now = time.time()
-		speed = round((amount / (now - timestamp)) * threads)
-		print("  - {} - permutations: {} / {} ({}%) - threads: {} - speed: {} p/s".format(guess, total, count, percent, threads, speed), end="      \r")
+		if thread == threads - 1:
+			total = offset + (amount * threads)
+			percent = round((total/count)*100, 6)
+			now = time.time()
+			speed = round((amount / (now - timestamp)) * threads)
+			print("  - {} - permutations: {} / {} ({}%) - threads: {} - speed: {} p/s".format(guess, total, count, percent, threads, speed), end="      \r")
 		if check(guess) == 1:
 			return guess
 		amount += 1
@@ -44,7 +45,7 @@ def force(start, charset, minimum, maximum, chunk, check, cache):
 
 			for thread in range(0, threads):
 				leap = thread * chunk
-				pool.apply_async(permutate, args=(itertools.islice(permutations, offset + leap, offset + leap + chunk), threads, offset, count, check, time.time()), callback=process)
+				pool.apply_async(permutate, args=(itertools.islice(permutations, offset + leap, offset + leap + chunk), thread, threads, offset, count, check, time.time()), callback=process)
 			
 			pool.close()
 			pool.join()

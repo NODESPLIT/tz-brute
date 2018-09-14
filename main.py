@@ -43,6 +43,13 @@ else:
 			selected_custom_charset = input("Please enter a custom charset (e.g. 0123456789abcde...): ")
 		anchor.data["parameters"]["custom"] = selected_custom_charset
 		charsets.append(anchor.data["parameters"]["custom"])
+
+	selected_chunk = "-1"
+	while not (selected_chunk.isdigit() and int(selected_chunk) >= 1):
+		selected_chunk = input("Please select a chunk size (default: 100): ")
+		if not selected_chunk.strip():
+			selected_chunk = "100"
+	anchor.data["parameters"]["chunk"] = int(selected_chunk)
 	
 	selected_minimum = "-1"
 	while not (selected_minimum.isdigit() and int(selected_minimum) >= 6):
@@ -87,7 +94,7 @@ def check(password):
 charset = charsets[anchor.data["parameters"]["charset"]]
 print("Starting bruteforce with charset[{}]...".format(charset))
 
-password = brute.force([int(anchor.data["status"]["length"]), int(anchor.data["status"]["depth"])], charset, anchor.data["parameters"]["minimum"], 100, 1000, check, cache)
+password = brute.force([int(anchor.data["status"]["length"]), int(anchor.data["status"]["depth"])], charset, anchor.data["parameters"]["minimum"], 100, anchor.data["parameters"]["chunk"], check, cache)
 if password:
 	print("\n\nGot it! Password is \"{}\"".format(password))
 	anchor.data["status"]["match"] = password

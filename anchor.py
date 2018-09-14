@@ -7,7 +7,8 @@ data = {
 	"parameters" : {
 		"charset" : 4,
 		"custom" : "",
-		"minimum" : 3
+		"minimum" : 3,
+		"chunk" : 100
 	},
 	"details" : {
 		"address" : "",
