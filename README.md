@@ -35,7 +35,8 @@ python main.py
 ```
   
 ##### Linux
-###### coming soon
+###### Just run ```run-linux.sh```
+  
 ##### Windows
 ###### coming soon
 ###
